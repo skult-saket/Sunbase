@@ -1,0 +1,4 @@
+I used HTML to create a simple user interface with checkboxes for selecting chocolates and input fields for specifying quantities.
+CSS was used for basic styling to ensure a clean and responsive design.
+JavaScript handles the functionality of calculating the total price and updating it as the user selects chocolates and specifies quantities. It also ensures that the total number of chocolates does not exceed 8.
+We can customize the HTML and CSS to match your website's design and add more chocolates as needed. Adjust the pricing logic in the JavaScript code to reflect the actual prices of your chocolates.

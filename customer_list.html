@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<body>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-lg-6" style="margin-left: 20%; display: inline-block;">
+            <button type="button" id="addcustomer"  class="btn btn-primary" align="center" onclick="changestate1();">Add Customer</button>
+            <h2 style="display: inline-block; margin-left: 30%;"><b>Customer List</b></h2>
+            <hr style="height:2px;border-width:0;color:black;background-color:rgb(8, 8, 8)"> 
+            <table id="table3" class="table table-striped table-hover"style="width: 100%;background-color: #eaebe8; border: 2px;  ">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Email</th>
+                        <th>Phone</th> 
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>   
+            <br>
+        </div>
+    </div>    
+</body>
+<script>
+    function changestate1(){
+        window.location.href = 'customer_details.html';
+    }
+</script>
+</html>

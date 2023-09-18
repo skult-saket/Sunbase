@@ -1,0 +1,6 @@
+Explanation:
+
+I use HTML to structure the carousel and products, including the necessary Bootstrap classes for styling and functionality.
+CSS is used for custom styling to make the carousel visually appealing.
+JavaScript is used to initialize the carousel, set the interval for automatic rotation, and enable pause on hover.
+This approach leverages Bootstrap for responsiveness and styling, making it compatible with various screen sizes and devices. 

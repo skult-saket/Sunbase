@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <style>
+        .form-control {
+            display: inline-block;
+            width: 200px;
+            height: 30px
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <center><h2><b>Login Page</b></h2></center><br>
+        <center><input type="text" class="form-control" placeholder="Login Id" id="login_id" required></center>
+        <br>
+        <center><input type="password" class="form-control" placeholder="Password" id="password" required></center>
+        <br>
+        <center><button type="button" id="submit"  class="btn btn-success" align="center" onclick="loginUser();">Submit</button></center>
+
+    </div>
+</body>
+<script>
+   function loginUser() {
+    const username = document.getElementById('login_id').value;
+    const password = document.getElementById('password').value;
+  const apiUrl = 'https://qa2.sunbasedata.com/sunbase/portal/api/assignment_auth.jsp';
+  const loginData = {
+    login_id: username,
+    password: password
+  };
+     fetch(apiUrl, {
+    method: 'POST',
+    body: JSON.stringify(loginData)
+  })
+  .then(response =>
+   response.json())
+  .then(data => {
+    if (data.access_token) {
+      localStorage.setItem('bearerToken', data.access_token);
+      window.location.href = 'customer_list.html';
+    } else {
+      alert('Authentication failed. Please check your credentials.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+</script>
+</html>

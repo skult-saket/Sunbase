@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Chocolate Pack Builder</title>
+    <style>
+        .chocolate-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 40px;
+        }
+
+        .chocolate-item {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            font-size: large;
+        }
+
+        .chocolate-checkbox {
+            margin-right: 5px;
+        }
+
+        .chocolate-quantity {
+            width: 40px;
+            
+        }
+
+        .total-price {
+            margin-top: 60px;
+            margin-left: 60%;
+        }
+
+    </style>
+</head>
+<body>
+    <center><h1>Build Your Custom Chocolate Pack</h1></center>
+    <br><br>
+    <div class="chocolate-list">
+        <div class="chocolate-item">
+            <input type="checkbox" id="chocolate1" class="chocolate-checkbox">
+            <label for="chocolate1">Kit Kat &nbsp;&nbsp;&nbsp;</label>
+            <input type="number" id="chocolate1-quantity" placeholder="0"; class="chocolate-quantity" min="0" max="8">
+        </div>
+
+        <div class="chocolate-item">
+            <input type="checkbox" id="chocolate1" class="chocolate-checkbox">
+            <label for="chocolate1">Munch &nbsp;&nbsp;&nbsp;</label>
+            <input type="number" id="chocolate1-quantity" placeholder="0"; class="chocolate-quantity" min="0" max="8">
+        </div>
+
+        <div class="chocolate-item">
+            <input type="checkbox" id="chocolate1" class="chocolate-checkbox">
+            <label for="chocolate1">Dairy Milk &nbsp;&nbsp;&nbsp;</label>
+            <input type="number" id="chocolate1-quantity" placeholder="0"; class="chocolate-quantity" min="0" max="8">
+        </div>
+
+        <div class="chocolate-item">
+            <input type="checkbox" id="chocolate1" class="chocolate-checkbox">
+            <label for="chocolate1">AMUL Choclate &nbsp;&nbsp;&nbsp;</label>
+            <input type="number" id="chocolate1-quantity" placeholder="0"; class="chocolate-quantity" min="0" max="8">
+        </div>
+
+        <div class="chocolate-item">
+            <input type="checkbox" id="chocolate1" class="chocolate-checkbox">
+            <label for="chocolate1">5 Star &nbsp;&nbsp;&nbsp;</label>
+            <input type="number" id="chocolate1-quantity" placeholder="0"; class="chocolate-quantity" min="0" max="8">
+        </div>
+        
+        
+    </div>
+
+    <div class="total-price">
+        <p>Total Price: ₹<span id="total-price">0.00</span></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const chocolateCheckboxes = document.querySelectorAll(".chocolate-checkbox");
+        const chocolateQuantities = document.querySelectorAll(".chocolate-quantity");
+        const totalPriceElement = document.getElementById("total-price");
+
+        function calculateTotalPrice() {
+            let totalPrice = 0;
+            for (let i = 0; i < chocolateCheckboxes.length; i++) {
+                if (chocolateCheckboxes[i].checked) {
+                    const quantity = parseInt(chocolateQuantities[i].value);
+                    totalPrice += quantity * 10; 
+                }
+            }
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        chocolateCheckboxes.forEach(function (checkbox, index) {
+            checkbox.addEventListener("change", function () {
+                calculateTotalPrice();
+            });
+
+            chocolateQuantities[index].addEventListener("input", function () {
+                if (parseInt(chocolateQuantities[index].value) > 8) {
+                    chocolateQuantities[index].value = 8;
+                }
+                calculateTotalPrice();
+            });
+        });
+    });
+
+    </script>
+</body>
+</html>

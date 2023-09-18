@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <style>
+        .form-control {
+            display: inline-block;
+            width: 200px;
+            height: 30px
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-left: 30%;">
+        <h2><b>Customer Details</b></h2><br><br>
+        <tr>
+            <td><input type="text" class="form-control" placeholder="First Name" id="1a" required></td>
+            <td><input type="text" class="form-control" placeholder="Last Name" id="1b" required></td>
+        </tr><br><br>
+        <tr>
+            <td><input type="text" class="form-control" placeholder="Street" id="1c" required></td>
+            <td><input type="text" class="form-control" placeholder="Address" id="1d" required></td>
+        </tr><br><br>
+        <tr>
+            <td><input type="text" class="form-control" placeholder="City" id="1e" required></td>
+            <td><input type="text" class="form-control" placeholder="State" id="1f" required></td>
+        </tr><br><br>
+        <tr>
+            <td><input type="text" class="form-control" placeholder="Email" id="1g" required></td>
+            <td><input type="text" class="form-control" placeholder="Phone" id="1h" required></td>
+        </tr><br><br>
+        <button style="margin-left: 40%;" type="button" id="submit"  class="btn btn-primary" align="center" onclick="changestate2()">Submit</button>
+    </div>
+</body>
+<script>
+    function changestate2(){
+        const data = {
+        firstName : document.getElementById('1a').value,
+        lastName : document.getElementById('1b').value,
+        street : document.getElementById('1c').value,
+        address : document.getElementById('1d').value,
+        city : document.getElementById('1e').value,
+        state : document.getElementById('1f').value,
+        email : document.getElementById('1g').value,
+        phone : document.getElementById('1h').value,
+        }
+        const token = `Bearer ${localStorage.getItem('bearerToken')}`
+        console.log(token);
+
+                // const express = import('express');
+                // const cors = import('cors');
+
+                // const app = express();
+
+                // // Allow requests from localhost:5500
+                // const corsOptions = {
+                // origin: 'http://localhost:5500',
+                // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+                // optionsSuccessStatus: 204,
+                // };
+
+                // app.use(cors(corsOptions));
+
+                // // Your API routes go here
+
+                // app.listen(3000, () => {
+                // console.log('Server is running on port 3000');
+                // });
+
+        const apiUrl = 'https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp';
+        fetch(apiUrl, {
+            method: 'POST',
+                parameters:{
+                    'cmd' : 'create'
+                    },
+            headers:{
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "http://localhost:5500",
+                'Authorization': `${token}`,
+                
+            },
+            body:JSON.stringify(data)
+        })
+        .then(response =>
+        response.json())
+        .then(data => {
+            if (data.access_token) {
+            window.location.href = 'customer_list.html';
+            } else {
+            alert('Authentication failed. Please check your credentials.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+    
+
+    
+</script>
+</html>
